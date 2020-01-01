@@ -10,6 +10,7 @@
 rule CloudDuke_Malware {
 	meta:
 		description = "Detects CloudDuke Malware"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://www.f-secure.com/weblog/archives/00002822.html"
 		date = "2015-07-22"
@@ -33,25 +34,6 @@ rule CloudDuke_Malware {
 		$op2 = { e8 2f a2 ff ff 83 20 00 83 c8 ff 5f 5e 5d c3 55 } /* Opcode */
 	condition:
 		uint16(0) == 0x5a4d and filesize < 720KB and 4 of ($s*) and 1 of ($op*)
-}
-
-/* Inverse Rules ----------------------------------------------------------- */
-/* Warning: this rule works with the external variable 'filename' only       */
-
-rule Acrotray_Anomaly {
-	meta:
-		description = "Detects an acrotray.exe that does not contain the usual strings"
-		author = "Florian Roth"
-		score = 75
-	strings:
-		$s1 = "PDF/X-3:2002" fullword wide
-		$s2 = "AcroTray - Adobe Acrobat Distiller helper application" fullword wide
-		$s3 = "MS Sans Serif" fullword wide
-		$s4 = "COOLTYPE.DLL" fullword ascii
-	condition:
-		uint16(0) == 0x5a4d and filesize < 3000KB 
-		and ( filename == "acrotray.exe" or filename == "AcroTray.exe" )
-		and not all of ($s*) 	
 }
 
 /* Super Rules ------------------------------------------------------------- */

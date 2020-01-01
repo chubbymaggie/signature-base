@@ -3,7 +3,7 @@
 	Author: Florian Roth
 	Date: 2015-08-08
 	Identifier: Cheshire Cat
-	Version: 0.1 
+	Version: 0.1
 */
 
 /* Rule Set ----------------------------------------------------------------- */
@@ -11,6 +11,7 @@
 rule CheshireCat_Sample2 {
 	meta:
 		description = "Auto-generated rule - file dc18850d065ff6a8364421a9c8f9dd5fcce6c7567f4881466cee00e5cd0c7aa8"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://malware-research.org/prepare-father-of-stuxnet-news-are-coming/"
 		date = "2015-08-08"
@@ -33,6 +34,7 @@ rule CheshireCat_Sample2 {
 rule CheshireCat_Gen1 {
 	meta:
 		description = "Auto-generated rule - file ec41b029c3ff4147b6a5252cb8b659f851f4538d4af0a574f7e16bc1cd14a300"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://malware-research.org/prepare-father-of-stuxnet-news-are-coming/"
 		date = "2015-08-08"
@@ -71,7 +73,8 @@ rule CheshireCat_Gen1 {
 
 rule CheshireCat_Gen2 {
 	meta:
-		description = "Auto-generated rule - from files 32159d2a16397823bc882ddd3cd77ecdbabe0fde934e62f297b8ff4d7b89832a, 63735d555f219765d486b3d253e39bd316bbcb1c0ec595ea45ddf6e419bef3cb"
+		description = "Cheshire Cat Malware"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://malware-research.org/prepare-father-of-stuxnet-news-are-coming/"
 		date = "2015-08-08"

@@ -10,6 +10,7 @@
 rule WildNeutron_Sample_1 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 2b5065a3d0e0b8252a987ef5f29d9e1935c5863f5718b83440e68dc53c21fa94"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -34,6 +35,7 @@ rule WildNeutron_Sample_1 {
 rule WildNeutron_Sample_2 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 8d80f9ef55324212759f4b6070cb8fce18a008ae9dd8b9598553206654d13a6f"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -55,6 +57,7 @@ rule WildNeutron_Sample_2 {
 rule WildNeutron_Sample_3 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file c2c761cde3175f6e40ed934f2e82c76602c81e2128187bab61793ddb3bc686d0"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -63,8 +66,7 @@ rule WildNeutron_Sample_3 {
 	strings:
 		$x1 = "178.162.197.9" fullword ascii /* score: '9.00' */
 		$x2 = "\"http://fw.ddosprotected.eu:80 /opts resolv=drfx.chickenkiller.com\"" fullword wide /* PEStudio Blacklist: strings */ /* score: '33.00' */
-		$x3 = ".chickenkiller.com" ascii /* PEStudio Blacklist: strings */ /* score: '28.00' */
-		
+
 		$s1 = "LiveUpdater.exe" fullword wide /* PEStudio Blacklist: strings */ /* score: '25.00' */
 		$s2 = "id-at-postalAddress" fullword ascii /* PEStudio Blacklist: strings */ /* score: '18.00' */
 		$s3 = "%d -> %d (default)" fullword wide /* PEStudio Blacklist: strings */ /* score: '17.00' */
@@ -73,13 +75,14 @@ rule WildNeutron_Sample_3 {
 		$s6 = "ECDSA with SHA256" fullword ascii /* PEStudio Blacklist: strings */ /* score: '10.00' */
 		$s7 = "Acer LiveUpdater" fullword wide /* PEStudio Blacklist: strings */ /* score: '10.00' */
 	condition:
-		uint16(0) == 0x5a4d and filesize < 2020KB and 
+		uint16(0) == 0x5a4d and filesize < 2020KB and
 		( 1 of ($x*) or all of ($s*) )
 }
 
 rule WildNeutron_Sample_4 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file b4005530193bc523d3e0193c3c53e2737ae3bf9f76d12c827c0b5cd0dcbaae45"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -103,6 +106,7 @@ rule WildNeutron_Sample_4 {
 rule WildNeutron_Sample_5 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 1604e36ccef5fa221b101d7f043ad7f856b84bf1a80774aa33d91c2a9a226206"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -126,6 +130,7 @@ rule WildNeutron_Sample_5 {
 rule WildNeutron_Sample_6 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 4bd548fe07b19178281edb1ee81c9711525dab03dc0b6676963019c44cc75865"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -140,6 +145,7 @@ rule WildNeutron_Sample_6 {
 rule WildNeutron_Sample_7 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file a14d31eb965ea8a37ebcc3b5635099f2ca08365646437c770212d534d504ff3c"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -162,16 +168,17 @@ rule WildNeutron_Sample_7 {
 		uint16(0) == 0x5a4d and filesize < 5000KB and all of them
 }
 
-rule WildNeutron_Sample_8 {
+rule subTee_nativecmd {
 	meta:
-		description = "Wild Neutron APT Sample Rule - file 758e6b519f6c0931ff93542b767524fc1eab589feb5cfc3854c77842f9785c92"
+		description = "NativeCmd - used by various threat groups"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
-		score = 60
+		score = 40
 		hash = "758e6b519f6c0931ff93542b767524fc1eab589feb5cfc3854c77842f9785c92"
 	strings:
-		$x1 = "RunFile: couldn't load SHELL32.DLL!" fullword ascii /* PEStudio Blacklist: strings */ /* score: '27.00' */
+		$x1 = "RunFile: couldn't load SHELL32.DLL!" ascii wide /* PEStudio Blacklist: strings */ /* score: '27.00' */
 		$x2 = "RunFile: couldn't find ShellExecuteExA/W in SHELL32.DLL!" fullword ascii /* PEStudio Blacklist: strings */ /* score: '35.00' */
 		$x3 = "Error executing CreateProcess()!!" fullword wide /* PEStudio Blacklist: strings */ /* score: '31.00' */
 		$x4 = "cmdcmdline" fullword wide /* score: '11.00' */
@@ -185,21 +192,20 @@ rule WildNeutron_Sample_8 {
 		$s6 = ".com;.exe;.bat;.cmd" fullword wide /* score: '15.00' */
 		$s7 = ") -%s-> %s (" fullword ascii /* score: '14.00' */
 		$s8 = "cmdextversion" fullword wide /* score: '14.00' */
-		$s9 = "Invalid pid (%s)" fullword wide /* PEStudio Blacklist: strings */ /* score: '13.00' */
 		$s10 = "\"%s\" /K %s" fullword wide /* score: '11.02' */
-		$s11 = "Error setting %s (%s)" fullword wide /* score: '11.00' */
 		$s12 = "DEBUG: Cannot allocate memory for ptrNextNode->ptrNext!" fullword ascii /* PEStudio Blacklist: strings */ /* score: '10.00' */
 		$s13 = "Failed to build full directory path" fullword wide /* score: '10.00' */
 		$s14 = "DEBUG: Cannot allocate memory for ptrFileArray!" fullword ascii /* PEStudio Blacklist: strings */ /* score: '9.00' */
 		$s15 = "%-8s %-3s  %*s %s  %s" fullword wide /* score: '8.00' */
 		$s16 = " %%%c in (%s) do " fullword wide /* score: '8.00' */
 	condition:
-		uint16(0) == 0x5a4d and filesize < 1677KB and 2 of ($x*) and 6 of ($s*)
+		uint16(0) == 0x5a4d and ( 2 of ($x*) or 6 of ($s*) )
 }
 
 rule WildNeutron_Sample_9 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 781eb1e17349009fbae46aea5c59d8e5b68ae0b42335cb035742f6b0f4e4087e"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -207,7 +213,6 @@ rule WildNeutron_Sample_9 {
 		hash = "781eb1e17349009fbae46aea5c59d8e5b68ae0b42335cb035742f6b0f4e4087e"
 	strings:
 		$s0 = "http://get.adobe.com/flashplayer/" fullword wide /* PEStudio Blacklist: strings */ /* score: '30.00' */
-		$s1 = "xxxxxxxxxxxxxxxxxxxx" fullword wide /* reversed goodware string 'xxxxxxxxxxxxxxxxxxxx' */ /* score: '19.00' */
 		$s4 = " Player Installer/Uninstaller" fullword wide /* PEStudio Blacklist: strings */ /* score: '11.42' */
 		$s5 = "Adobe Flash Plugin Updater" fullword wide /* PEStudio Blacklist: strings */ /* score: '11.00' */
 		$s6 = "uSOFTWARE\\Adobe" fullword wide /* PEStudio Blacklist: strings */ /* score: '10.42' */
@@ -221,6 +226,7 @@ rule WildNeutron_Sample_9 {
 rule WildNeutron_Sample_10 {
 	meta:
 		description = "Wild Neutron APT Sample Rule - file 1d3bdabb350ba5a821849893dabe5d6056bf7ba1ed6042d93174ceeaa5d6dad7"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"
@@ -228,7 +234,7 @@ rule WildNeutron_Sample_10 {
 		hash = "1d3bdabb350ba5a821849893dabe5d6056bf7ba1ed6042d93174ceeaa5d6dad7"
 	strings:
 		$n1 = "/c for /L %%i in (1,1,2) DO ping 127.0.0.1 -n 3 & type %%windir%%\\notepad.exe > %s & del /f %s" fullword ascii /* PEStudio Blacklist: strings */ /* score: '46.00' */
-		
+
 		$s1 = "%SYSTEMROOT%\\temp\\_dbg.tmp" fullword ascii /* PEStudio Blacklist: strings */ /* score: '37.00' */
 		$s2 = "%SYSTEMROOT%\\SysWOW64\\mspool.dll" fullword ascii /* PEStudio Blacklist: strings */ /* score: '36.17' */
 		$s3 = "%SYSTEMROOT%\\System32\\dpcore16t.dll" fullword ascii /* PEStudio Blacklist: strings */ /* score: '36.17' */
@@ -240,7 +246,7 @@ rule WildNeutron_Sample_10 {
 		$s9 = "%SYSTEMROOT%\\System32\\mshtaex.exe" fullword ascii /* PEStudio Blacklist: strings */ /* score: '31.17' */
 		$s10 = "%SYSTEMROOT%\\System32\\iastor32.exe" fullword ascii /* PEStudio Blacklist: strings */ /* score: '31.17' */
 		$s11 = "%SYSTEMROOT%\\SysWOW64\\mshtaex.exe" fullword ascii /* PEStudio Blacklist: strings */ /* score: '31.17' */
-		
+
 		$x1 = "wdigestEx.dll" fullword ascii /* PEStudio Blacklist: strings */ /* score: '26.00' */
 		$x2 = "dpcore16t.dll" fullword ascii /* score: '21.00' */
 		$x3 = "mspool.dll" fullword ascii /* score: '21.00' */
@@ -254,9 +260,9 @@ rule WildNeutron_Sample_10 {
 		$y4 = "Install succeeded" fullword ascii /* PEStudio Blacklist: strings */ /* score: '10.00' */
 		$y5 = "Error: RegSetValueExA 0x%x" fullword ascii /* score: '9.00' */
 	condition:
-		uint16(0) == 0x5a4d and filesize < 400KB and 
+		uint16(0) == 0x5a4d and filesize < 400KB and
 		(
-			$n1 or ( 1 of ($s*) and 1 of ($x*) and 3 of ($y*) ) 
+			$n1 or ( 1 of ($s*) and 1 of ($x*) and 3 of ($y*) )
 		)
 }
 
@@ -264,7 +270,8 @@ rule WildNeutron_Sample_10 {
 
 rule WildNeutron_javacpl {
 	meta:
-		description = "Wild Neutron APT Sample Rule - from files 683f5b476f8ffe87ec22b8bab57f74da4a13ecc3a5c2cbf951999953c2064fc9, 758e6b519f6c0931ff93542b767524fc1eab589feb5cfc3854c77842f9785c92, 8ca7ed720babb32a6f381769ea00e16082a563704f8b672cb21cf11843f4da7a"
+		description = "Wild Neutron APT Sample Rule"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/"
 		date = "2015-07-10"

@@ -110,22 +110,6 @@ rule IronTiger_GetPassword_x64
 		uint16(0) == 0x5a4d and ((any of ($str*)) or (all of ($bla*)))
 }
 
-rule IronTiger_Gh0stRAT_variant
-{
-	meta:
-		author = "Cyber Safety Solutions, Trend Micro"
-		description = "This is a detection for a s.exe variant seen in Op. Iron Tiger"
-		reference = "http://goo.gl/T5fSJC"
-	strings:
-		$str1 = "Game Over Good Luck By Wind" nocase wide ascii
-		$str2 = "ReleiceName" nocase wide ascii
-		$str3 = "jingtisanmenxiachuanxiao.vbs" nocase wide ascii
-		$str4 = "Winds Update" nocase wide ascii
-	condition:
-		uint16(0) == 0x5a4d and (any of ($str*))
-		and not filename == "UpdateSystemMib.exe"
-}
-
 rule IronTiger_GTalk_Trojan
 {
 	meta:
@@ -137,20 +121,6 @@ rule IronTiger_GTalk_Trojan
 		$str2 = "computer=%s&lanip=%s&uid=%s&os=%s&data=%s" nocase wide ascii
 		$str3 = "D13idmAdm" nocase wide ascii
 		$str4 = "Error: PeekNamedPipe failed with %i" nocase wide ascii
-	condition:
-		uint16(0) == 0x5a4d and (2 of ($str*))
-}
-
-rule IronTiger_HTTPBrowser_Dropper
-{
-	meta:
-		author = "Cyber Safety Solutions, Trend Micro"
-		description = "Iron Tiger Malware - HTTPBrowser Dropper"
-		reference = "http://goo.gl/T5fSJC"
-	strings:
-		$str1 = ".dllUT" nocase wide ascii
-		$str2 = ".exeUT" nocase wide ascii
-		$str3 = ".urlUT" nocase wide ascii
 	condition:
 		uint16(0) == 0x5a4d and (2 of ($str*))
 }
@@ -190,7 +160,7 @@ rule IronTiger_NBDDos_Gh0stvariant_dropper
 rule IronTiger_PlugX_DosEmulator
 {
 	meta:
-		author = "Cyber Safety Solutions, Trend Micro"
+		author = "Cyber Safety Solutions, Trend Micro - modified by Florian Roth"
 		description = "Iron Tiger Malware - PlugX DosEmulator"
 		reference = "http://goo.gl/T5fSJC"
 	strings:
@@ -199,7 +169,7 @@ rule IronTiger_PlugX_DosEmulator
 		$str3 = "FastDos.cpp" nocase wide ascii
 		$str4 = "fail,error code = %d." nocase wide ascii
 	condition:
-		uint16(0) == 0x5a4d and (any of ($str*))
+		uint16(0) == 0x5a4d and 2 of ($str*)
 }
 
 rule IronTiger_PlugX_FastProxy

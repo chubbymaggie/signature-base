@@ -1,7 +1,7 @@
-
 rule APT_Malware_PutterPanda_Rel {
 	meta:
 		description = "Detects an APT malware related to PutterPanda"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -29,6 +29,7 @@ rule APT_Malware_PutterPanda_Rel {
 rule APT_Malware_PutterPanda_Rel_2 {
 	meta:
 		description = "APT Malware related to PutterPanda Group"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -58,6 +59,7 @@ rule APT_Malware_PutterPanda_Rel_2 {
 rule APT_Malware_PutterPanda_PSAPI {
 	meta:
 		description = "Detects a malware related to Putter Panda"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -76,6 +78,7 @@ rule APT_Malware_PutterPanda_PSAPI {
 rule APT_Malware_PutterPanda_WUAUCLT {
 	meta:
 		description = "Detects a malware related to Putter Panda"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -83,7 +86,7 @@ rule APT_Malware_PutterPanda_WUAUCLT {
 		hash = "fd5ca5a2d444865fa8320337467313e4026b9f78"
 	strings:
 		$x0 = "WUAUCLT.EXE" fullword wide /* PEStudio Blacklist: strings */ /* score: '20.01' */
-		$x1 = "%s\\tmp%d.exe" fullword ascii /* score: '14.01' */	
+		$x1 = "%s\\tmp%d.exe" fullword ascii /* score: '14.01' */
 		$x2 = "Microsoft Corporation. All rights reserved." fullword wide /* score: '8.04' */
 
 		$s1 = "Microsoft Windows Operating System" fullword wide /* PEStudio Blacklist: strings */ /* score: '5' */ /* Goodware String - occured 4 times */
@@ -96,7 +99,7 @@ rule APT_Malware_PutterPanda_WUAUCLT {
 		$s8 = "CreatePipe" fullword ascii /* PEStudio Blacklist: strings */ /* score: '5' */ /* Goodware String - occured 222 times */
 		$s9 = "EnumProcessModules" fullword ascii /* PEStudio Blacklist: strings */ /* score: '5' */ /* Goodware String - occured 410 times */
 	condition:
-		all of ($x*) or 
+		all of ($x*) or
 		(1 of ($x*) and all of ($s*) )
 }
 
@@ -125,6 +128,7 @@ rule APT_Malware_PutterPanda_Gen1 {
 rule Malware_MsUpdater_String_in_EXE {
 	meta:
 		description = "MSUpdater String in Executable"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 50
 		reference = "VT Analysis"
@@ -142,12 +146,13 @@ rule Malware_MsUpdater_String_in_EXE {
 		$fp2 = "_msupdate_" ascii /* False Positive */
 		$fp3 = "/kies" wide
 	condition:
-		uint16(0) == 0x5a4d and filesize < 500KB and ( 1 of ($x*) ) and not ( 1 of ($fp*) ) 
+		uint16(0) == 0x5a4d and filesize < 500KB and ( 1 of ($x*) ) and not ( 1 of ($fp*) )
 }
 
 rule APT_Malware_PutterPanda_MsUpdater_3 {
 	meta:
 		description = "Detects Malware related to PutterPanda - MSUpdater"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -165,6 +170,7 @@ rule APT_Malware_PutterPanda_MsUpdater_3 {
 rule APT_Malware_PutterPanda_MsUpdater_1 {
 	meta:
 		description = "Detects Malware related to PutterPanda - MSUpdater"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -188,6 +194,7 @@ rule APT_Malware_PutterPanda_MsUpdater_1 {
 rule APT_Malware_PutterPanda_MsUpdater_2 {
 	meta:
 		description = "Detects Malware related to PutterPanda - MSUpdater"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -222,6 +229,7 @@ rule APT_Malware_PutterPanda_MsUpdater_2 {
 rule APT_Malware_PutterPanda_Gen4 {
 	meta:
 		description = "Detects Malware related to PutterPanda"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 70
 		reference = "VT Analysis"
@@ -250,7 +258,7 @@ rule APT_Malware_PutterPanda_Gen4 {
 		$z6 = "Avaliable data:%u bytes" fullword ascii /* score: '5.03' */
 		$z7 = "abe2869f-9b47-4cd9-a358-c22904dba7f7" fullword ascii /* PEStudio Blacklist: guid */ /* score: '5.00' */ /* Goodware String - occured 2 times */
 	condition:
-		filesize < 300KB and 
+		filesize < 300KB and
 		(
 			( uint16(0) == 0x5a4d and $x1 and 3 of ($s*) ) or
 			( 3 of ($s*) and 4 of ($z*) )
